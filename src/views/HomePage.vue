@@ -8,20 +8,20 @@
         <v-flex xs12 md4>
           <v-layout row wrap>
             <v-flex md3 text-md-center>
-              <v-btn small flat color="grey" @click="sortBy('dormName')">
-                <v-icon left small>sort</v-icon>
+              <v-btn id="sortByDormName" small flat color="grey" @click="sortBy('dormName')">
+                <v-icon left small class="ma-1">sort</v-icon>
                 <span class="caption">宿舍名称</span>
               </v-btn>
             </v-flex>
             <v-flex md3 text-md-center>
-              <v-btn small flat color="grey" @click="sortBy('updateTime')">
-                <v-icon left small>sort</v-icon>
+              <v-btn id="sortByUpdateTime" small flat color="grey" @click="sortBy('updateTime')">
+                <v-icon left small class="ma-1">sort</v-icon>
                 <span class="caption">更新时间</span>
               </v-btn>
             </v-flex>
             <v-flex md3 text-md-center>
-              <v-btn small flat color="grey" @click="sortBy('onlineRate')">
-                <v-icon left small>sort</v-icon>
+              <v-btn id="sortByOnlineRate" small flat color="grey" @click="sortBy('onlineRate')">
+                <v-icon left small class="ma-1">sort</v-icon>
                 <span class="caption">出勤率</span>
               </v-btn>
             </v-flex>
@@ -65,21 +65,57 @@
 </template>
 
 <script>
+function createDate(string)
+{
+  let a, b, year, month, day, hour, minute;
+  [a, b] = string.split(" ");
+  [year, month, day] = a.split(".");
+  [hour, minute] = b.split(":");
+  return new Date(year, month, day, hour, minute);
+}
 export default {
   data() {
     return {
-      dorms: [{name: "狮城公寓639", updateTime: "2019.06.14 00:29", online: 2, offline: 2, status: "partial"},
-              {name: "狮城公寓640", updateTime: "2019.06.14 00:29", online: 3, offline: 1, status: "partial"},
-              {name: "狮城公寓641", updateTime: "2019.06.14 00:29", online: 0, offline: 4, status: "empty"},
-              {name: "狮城公寓642", updateTime: "2019.06.14 00:29", online: 4, offline: 0, status: "full"}], 
-      trans: {empty: "空", full: "全勤", partial: "缺勤"},
+      dorms: [{name: "狮城公寓640", updateTime: "2019.06.14 00:29", online: 2, offline: 2, status: "partial"},
+              {name: "狮城公寓639", updateTime: "2019.06.13 00:29", online: 3, offline: 1, status: "partial"},
+              {name: "狮城公寓641", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
+              {name: "狮城公寓642", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"}], 
+      trans: {empty: "无人", full: "全勤", partial: "缺勤"},
+      sortState: null,
     }
   },
   methods: {
     sortBy: function(prop)
     {
-      this.dorms.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
+      if(prop == this.sortState)
+      {
+        // 点击相同的排序按钮，反序
+        this.dorms.reverse();
+      }
+      else if(prop == "dormName")
+      {
+        this.dorms.sort((a, b) => a["name"] < b["name"] ? -1 : 1);
+        this.sortState = "dormName";
+      }
+      else if(prop == "updateTime")
+      {
+        this.dorms.sort(function(a, b){
+          let aDate = new createDate(a["updateTime"]);
+          let bDate = new createDate(b["updateTime"]);
+          return aDate.getTime() - bDate.getTime();
+        });
+        this.sortState = "updateTime";
+      }
+      else if(prop == "onlineRate")
+      {
+        this.dorms.sort((a, b) => a["online"]/(a["online"]+a["offline"]) < b["online"]/(b["online"]+b["offline"]) ? -1 : 1);
+        this.sortState = "onlineRate";
+      }
     }
+  },
+  // 初始化
+  mounted(){
+    this.sortBy("dormName");
   }
 }
 </script>
