@@ -8,22 +8,31 @@
         <v-flex xs12 md4>
           <v-layout row wrap>
             <v-flex md3 text-md-center>
-              <v-btn id="sortByDormName" small flat color="grey" @click="sortBy('dormName')">
+              <v-tooltip top>
+                <v-btn id="sortByDormName" small flat color="grey" @click="sortBy('dormName')" slot="activator">
                 <v-icon left small class="ma-1">sort</v-icon>
                 <span class="caption">宿舍名称</span>
               </v-btn>
+              <span>根据宿舍名称进行排序</span>
+              </v-tooltip>
             </v-flex>
             <v-flex md3 text-md-center>
-              <v-btn id="sortByUpdateTime" small flat color="grey" @click="sortBy('updateTime')">
+              <v-tooltip top>
+                <v-btn id="sortByUpdateTime" small flat color="grey" @click="sortBy('updateTime')" slot="activator">
                 <v-icon left small class="ma-1">sort</v-icon>
                 <span class="caption">更新时间</span>
               </v-btn>
+              <span>根据数据更新时间排序</span>
+              </v-tooltip> 
             </v-flex>
             <v-flex md3 text-md-center>
-              <v-btn id="sortByOnlineRate" small flat color="grey" @click="sortBy('onlineRate')">
+              <v-tooltip top>
+                <v-btn id="sortByOnlineRate" small flat color="grey" @click="sortBy('onlineRate')" slot="activator">
                 <v-icon left small class="ma-1">sort</v-icon>
                 <span class="caption">出勤率</span>
               </v-btn>
+              <span>根据在宿舍的人数排序</span>
+              </v-tooltip>
             </v-flex>
           </v-layout>
         </v-flex>
