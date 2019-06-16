@@ -1,8 +1,6 @@
 <template>
   <div class="HomePage">
-    
-    <h1 class="subheading grey--text">HomePage</h1>
-    <v-container class="my-5">
+    <v-container class="pa-0 my-0">
       <!--排序选框-->
       <v-layout row>
         <v-flex xs12 md4>
@@ -39,22 +37,22 @@
       </v-layout>
       <v-layout row wrap>
         <!--宿舍信息-->
-        <v-flex xs12 md8>
+        <v-flex xs8 md8 class="scroll">
           <v-card flat class="pl-2 py-2" v-for="dorm in dorms" :key="dorm.name">
             <v-layout row wrap :class="`pl-3 dorm ${dorm.status}`">
-              <v-flex xs12 md3>
+              <v-flex xs3 md3>
                 <div class="caption grey--text">宿舍</div>
                 <div>{{dorm.name}}</div>
               </v-flex>
-              <v-flex xs12 md3>
+              <v-flex xs3 md3>
                 <div class="caption grey--text">更新时间</div>
                 <div>{{dorm.updateTime}}</div>
               </v-flex>
-              <v-flex xs12 md3>
+              <v-flex xs3 md3>
                 <div class="caption grey--text">在线人数</div>
                 <div>{{dorm.online}} / {{dorm.online + dorm.offline}}</div>
               </v-flex>
-              <v-flex xs12 md3>
+              <v-flex xs3 md3>
                 <div>
                   <v-chip small :class="`${dorm.status} white--text caption my-2`">{{trans[dorm.status]}}</v-chip>
                 </div>
@@ -63,9 +61,9 @@
           </v-card>
         </v-flex>
         <!--单个宿舍详细信息-->
-        <v-flex xs12 md4>
+        <v-flex fill-height d-flex xs4 md4>
           <v-card color="red lighten-2" dark flat>
-            <v-card-text>Hello</v-card-text>
+            <DormSimpleStatus></DormSimpleStatus>
           </v-card>
         </v-flex>
       </v-layout>
@@ -74,6 +72,8 @@
 </template>
 
 <script>
+import DormSimpleStatus from '@/components/DormSimpleStatus'
+
 function createDate(string)
 {
   let a, b, year, month, day, hour, minute;
@@ -83,12 +83,35 @@ function createDate(string)
   return new Date(year, month, day, hour, minute);
 }
 export default {
+  components: {DormSimpleStatus},
   data() {
     return {
       dorms: [{name: "狮城公寓640", updateTime: "2019.06.14 00:29", online: 2, offline: 2, status: "partial"},
               {name: "狮城公寓639", updateTime: "2019.06.13 00:29", online: 3, offline: 1, status: "partial"},
               {name: "狮城公寓641", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
-              {name: "狮城公寓642", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"}], 
+              {name: "狮城公寓642", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓643", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓644", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓645", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
+              {name: "狮城公寓646", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓647", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓648", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓649", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
+              {name: "狮城公寓650", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓651", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓652", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓653", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
+              {name: "狮城公寓654", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓655", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓656", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓657", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
+              {name: "狮城公寓658", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓659", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓660", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓661", updateTime: "2019.06.15 00:29", online: 0, offline: 4, status: "empty"},
+              {name: "狮城公寓662", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓663", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},
+              {name: "狮城公寓664", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},], 
       trans: {empty: "无人", full: "全勤", partial: "缺勤"},
       sortState: null,
     }
@@ -120,11 +143,15 @@ export default {
         this.dorms.sort((a, b) => a["online"]/(a["online"]+a["offline"]) < b["online"]/(b["online"]+b["offline"]) ? -1 : 1);
         this.sortState = "onlineRate";
       }
+    },
+    onResize: function(){
+
     }
   },
   // 初始化
   mounted(){
     this.sortBy("dormName");
+    this.onResize();
   }
 }
 </script>
@@ -153,6 +180,11 @@ export default {
 
 .v-chip.partial{
   background: orange
+}
+
+.scroll {
+  height: 85vh;
+  overflow-y: auto;
 }
 
 </style>
