@@ -38,7 +38,9 @@
       <v-layout row wrap>
         <!--宿舍信息-->
         <v-flex xs8 md8 class="scroll">
-          <v-card flat class="pl-2 py-2" v-for="dorm in dorms" :key="dorm.name">
+          <v-card flat @mouseover="focous(dorm.name)" @click="dormDisplayChange(dorm.name)" class="pl-2 py-2" v-for="dorm in dorms" :key="dorm.name" 
+          :class="{focous: dorm.name==focousName && dorm.name != selectedName,
+          selected: dorm.name == selectedName}">
             <v-layout row wrap :class="`pl-3 dorm ${dorm.status}`">
               <v-flex xs3 md3>
                 <div class="caption grey--text">宿舍</div>
@@ -61,10 +63,8 @@
           </v-card>
         </v-flex>
         <!--单个宿舍详细信息-->
-        <v-flex fill-height d-flex xs4 md4>
-          <v-card color="red lighten-2" dark flat>
-            <DormSimpleStatus></DormSimpleStatus>
-          </v-card>
+        <v-flex white xs4 md4 class="scroll">
+          <DormSimpleStatus></DormSimpleStatus>
         </v-flex>
       </v-layout>
     </v-container>
@@ -114,6 +114,8 @@ export default {
               {name: "狮城公寓664", updateTime: "2019.06.14 01:29", online: 4, offline: 0, status: "full"},], 
       trans: {empty: "无人", full: "全勤", partial: "缺勤"},
       sortState: null,
+      focousName: null,
+      selectedName: null,
     }
   },
   methods: {
@@ -144,14 +146,23 @@ export default {
         this.sortState = "onlineRate";
       }
     },
-    onResize: function(){
 
+    dormDisplayChange: function(name){
+      this.selectedName = name;
+    },
+
+    focous: function(name){
+      this.focousName = name;
+    },
+
+    unfocous: function(){
+      
     }
   },
   // 初始化
   mounted(){
     this.sortBy("dormName");
-    this.onResize();
+    this.selectedName = this.dorms[0].name;
   }
 }
 </script>
@@ -185,6 +196,14 @@ export default {
 .scroll {
   height: 85vh;
   overflow-y: auto;
+}
+
+.v-card.focous {
+  background: #3CD1C2;
+}
+
+.v-card.selected {
+  background: #7986CB;
 }
 
 </style>
