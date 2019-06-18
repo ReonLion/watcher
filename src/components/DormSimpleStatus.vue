@@ -2,7 +2,7 @@
     <v-layout column>
         <v-flex xs12 md12 class="text-xs-center">
             <div class="caption grey--text">宿舍</div>
-            <div class="subheading">{{dormStatus.name}}</div>
+            <div class="subheading">{{dormName}}</div>
             <div class="caption grey--text">用电量</div>
             <div class="subheading">{{dormStatus.power}}度</div>
             <div class="caption grey--text">更新时间</div>
@@ -41,6 +41,7 @@
 
 <script>
 export default {
+    props: ["dormName"],
     data(){
         return {
             dormStatus: {name: "狮城公寓639", updateTime: "2019.06.14 00:29", power: "200.00"},

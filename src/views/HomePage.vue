@@ -64,7 +64,7 @@
         </v-flex>
         <!--单个宿舍详细信息-->
         <v-flex white xs4 md4 class="scroll">
-          <DormSimpleStatus></DormSimpleStatus>
+          <DormSimpleStatus :dormName="selectedName"></DormSimpleStatus>
         </v-flex>
       </v-layout>
     </v-container>

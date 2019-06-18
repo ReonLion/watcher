@@ -1,7 +1,6 @@
 <template>
   <div class="Settings">
-    <h1 class="subheading grey--text">Settings</h1>
-    <v-container class="my-5">
+    <v-container class="py-0 my-0">
       content
     </v-container>
   </div>
