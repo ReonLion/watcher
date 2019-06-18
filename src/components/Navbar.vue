@@ -8,6 +8,19 @@
                 <span>er</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
+            <!--下拉菜单-->
+            <v-menu offset-y>
+                <v-btn slot="activator" flat color="grey">
+                    <v-icon left>expand_more</v-icon>
+                    <span>菜单</span>
+                </v-btn>
+                <v-list>
+                    <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+                        <v-list-tile-title>{{link.text}}</v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+            <!--退出按钮-->
             <v-btn flat color="grey">
                 <span>退出</span>
                 <v-icon right>exit_to_app</v-icon>
