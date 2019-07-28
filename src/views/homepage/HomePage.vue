@@ -1,78 +1,12 @@
 <template>
   <div class="HomePage">
-    <v-container class="pa-0 my-0">
-      <!--排序选框-->
-      <v-layout row>
-        <v-flex xs12 md4>
-          <v-layout row wrap>
-            <v-flex md3 text-md-center>
-              <v-tooltip top>
-                <v-btn id="sortByDormName" small flat color="grey" @click="sortBy('dormName')" slot="activator">
-                <v-icon left small class="ma-1">sort</v-icon>
-                <span class="caption">宿舍名称</span>
-              </v-btn>
-              <span>根据宿舍名称进行排序</span>
-              </v-tooltip>
-            </v-flex>
-            <v-flex md3 text-md-center>
-              <v-tooltip top>
-                <v-btn id="sortByUpdateTime" small flat color="grey" @click="sortBy('updateTime')" slot="activator">
-                <v-icon left small class="ma-1">sort</v-icon>
-                <span class="caption">更新时间</span>
-              </v-btn>
-              <span>根据数据更新时间排序</span>
-              </v-tooltip> 
-            </v-flex>
-            <v-flex md3 text-md-center>
-              <v-tooltip top>
-                <v-btn id="sortByOnlineRate" small flat color="grey" @click="sortBy('onlineRate')" slot="activator">
-                <v-icon left small class="ma-1">sort</v-icon>
-                <span class="caption">出勤率</span>
-              </v-btn>
-              <span>根据在宿舍的人数排序</span>
-              </v-tooltip>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <!--宿舍信息-->
-        <v-flex xs8 md8 class="scroll">
-          <v-card flat @mouseover="focous(dorm.name)" @click="dormDisplayChange(dorm.name)" class="pl-2 py-2" v-for="dorm in dorms" :key="dorm.name" 
-          :class="{focous: dorm.name==focousName && dorm.name != selectedName,
-          selected: dorm.name == selectedName}">
-            <v-layout row wrap :class="`pl-3 dorm ${dorm.status}`">
-              <v-flex xs3 md3>
-                <div class="caption grey--text">宿舍</div>
-                <div>{{dorm.name}}</div>
-              </v-flex>
-              <v-flex xs3 md3>
-                <div class="caption grey--text">更新时间</div>
-                <div>{{dorm.updateTime}}</div>
-              </v-flex>
-              <v-flex xs3 md3>
-                <div class="caption grey--text">在线人数</div>
-                <div>{{dorm.online}} / {{dorm.online + dorm.offline}}</div>
-              </v-flex>
-              <v-flex xs3 md3>
-                <div>
-                  <v-chip small :class="`${dorm.status} white--text caption my-2`">{{trans[dorm.status]}}</v-chip>
-                </div>
-              </v-flex>
-            </v-layout>
-          </v-card>
-        </v-flex>
-        <!--单个宿舍详细信息-->
-        <v-flex white xs4 md4 class="scroll">
-          <DormSimpleStatus :dormName="selectedName"></DormSimpleStatus>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <NavBar />
   </div>
 </template>
 
 <script>
-import DormSimpleStatus from '@/components/DormSimpleStatus'
+import NavBar from '@/components/navigations/Navbar'
+import {getSchools,} from '../../api/api'
 
 function createDate(string)
 {
@@ -83,7 +17,7 @@ function createDate(string)
   return new Date(year, month, day, hour, minute);
 }
 export default {
-  components: {DormSimpleStatus},
+  components: {NavBar},
   data() {
     return {
       dorms: [{name: "狮城公寓640", updateTime: "2019.06.14 00:29", online: 2, offline: 2, status: "partial"},
@@ -163,6 +97,10 @@ export default {
   mounted(){
     this.sortBy("dormName");
     this.selectedName = this.dorms[0].name;
+  },
+  // 检测是否登陆
+  created(){
+    getSchools()
   }
 }
 </script>

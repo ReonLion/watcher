@@ -63,8 +63,8 @@ export default {
         return{
             drawer: true,
             links: [
-               {icon: "home", text: "首页", route: "/HomePage"},
-               {icon: "settings", text: "设置", route: "/Settings"},
+               {icon: "home", text: "首\xa0\xa0\xa0\xa0页", route: "/HomePage"},
+               {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"},
             ]
         }
     }
