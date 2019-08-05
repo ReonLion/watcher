@@ -1,0 +1,15 @@
+.list-scrollbar{
+  height: calc(100vh - 48px);
+}
+
+.border-all{
+    border-left: 4px solid #3CD1C2;
+}
+
+.border-part{
+    border-left: 4px solid orange;
+}
+
+.border-none{
+    border-left: 4px solid #ff6347;
+}

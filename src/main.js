@@ -11,6 +11,9 @@ import './axios/axios'
 import Axios from 'axios'
 Vue.prototype.$http = Axios
 
+// 全局css文件
+import '@/styles/main.css'
+
 new Vue({
   router,
   store,
