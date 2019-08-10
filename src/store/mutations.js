@@ -11,5 +11,6 @@ export default {
             name: cookie.getCookie("name"),
             token: cookie.getCookie("token"),
         }
+        console.log(cookie.getCookie("token"))
     },
 }

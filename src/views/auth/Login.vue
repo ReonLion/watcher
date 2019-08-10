@@ -90,7 +90,6 @@ export default {
             cookie.setCookie("name", this.username, 1)
             cookie.setCookie("token", response.data.access, 1)
             // 存储在vuex中
-            console.log(this)
             this.$store.dispatch("setUserInfo")
             // 路由跳转
             this.$router.push({name: 'HomePage'})

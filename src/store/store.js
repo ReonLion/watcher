@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 // 全局注册vuex
 Vue.use(Vuex)
 import mutations from "./mutations"
-import actions from './actions'
+import * as actions from './actions'
 
 import cookie from "../assets/js/cookie"
 

@@ -7,11 +7,11 @@
             </v-flex>
             <v-flex xs2 md2>
                 <div class="caption grey--text">在线人数</div>
-                <div>{{building.online}}</div>
+                <div>{{building.online_num}}</div>
             </v-flex>
             <v-flex xs2 md2>
                 <div class="caption grey--text">总人数</div>
-                <div>{{building.total}}</div>
+                <div>{{building.total_num}}</div>
             </v-flex>
             <v-flex xs4 md4>
                 <div class="caption grey--text">更新时间</div>

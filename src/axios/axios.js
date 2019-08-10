@@ -33,6 +33,8 @@ axios.interceptors.response.use(
                 console.log("认证失败")
                 break
             case 403:
+                // 无权操作，返回登陆页面，登陆页面created中会清除token
+                router.replace({path: "/Login"})
                 console.log("您无该操作权限")
                 break
             case 500:
