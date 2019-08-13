@@ -1,22 +1,22 @@
 <template>
-    <div>
-        <vue-perfect-scrollbar class="list-scrollbar">
+    <div class="scroll-area">
+        <vue-scroll :ops="$store.vueScrollOps">
           <template v-for="(building, index) in buildings">
             <div :key="index">
-              <v-divider :key="index"></v-divider>
-              <building-card :key="building.id" :building="building" class="my-2"></building-card>
+              <v-divider></v-divider>
+              <building-card :building="building" class="my-1"></building-card>
             </div>
           </template>
-        </vue-perfect-scrollbar>
+        </vue-scroll>
     </div>
 </template>
 
 <script>
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import vueScroll from 'vuescroll'
 import BuildingCard from '@/components/student_online/building/BuildingCard'
 import {getBuildings,} from '@/api/api'
 export default {
-  components: {VuePerfectScrollbar, BuildingCard},
+  components: {vueScroll, BuildingCard},
   data(){
     return{
       buildings: null,

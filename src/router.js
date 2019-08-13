@@ -58,7 +58,7 @@ export default new Router({
             },
             {
               path: 'buidlings/:building_id/:floor_id',
-              name: 'floors',
+              name: 'dorms',
               components: {
                 'list': DormList,
                 'profile': DormProfile,

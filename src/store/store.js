@@ -14,8 +14,24 @@ const userInfo = {
     token: cookie.getCookie("token") || "",
 };
 
+const vueScrollOps = {
+    rail: {
+        opacity: '0.2',
+        background: undefined,
+        border: '1px solid #cecece',
+        size: '5px'
+      },
+    bar: {
+        background: undefined,
+        keepShow: true,
+        size: '5px',
+        minSize: 0.2
+    },
+}
+
 const state = {
     userInfo,
+    vueScrollOps,
 };
 
 export default new Vuex.Store({

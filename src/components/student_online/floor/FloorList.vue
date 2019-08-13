@@ -1,64 +1,40 @@
 <template>
-    <div>
-        <vue-perfect-scrollbar class="list-scrollbar">
+    <div class="list-scrollbar">
+        <vue-scroll :ops="$store.vueScrollOps">
           <template v-for="(floor, index) in floors">
-              <v-divider :key="index"></v-divider>
-              <floor-card :key="floor.name + index" :floor="floor" class="my-2"></floor-card>           
+              <div :key="index">
+                <v-divider></v-divider>
+                <floor-card :floor="floor" class="my-2"></floor-card>       
+              </div>    
           </template>
-        </vue-perfect-scrollbar>
+        </vue-scroll>
     </div>
 </template>
 
 <script>
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import vueScroll from 'vuescroll'
 import FloorCard from '@/components/student_online/floor/FloorCard'
+import {getFloors, } from '@/api/api'
 export default {
-  components: {VuePerfectScrollbar, FloorCard},
+  components: {vueScroll, FloorCard},
   data(){
     return{
-      floors:[
-        {id: "1", name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓-2", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-        {name: "狮城公寓", online: 200, total: 300,},
-      ]
+      floors: null,
     }
   },
+
+  created: function(){
+    getFloors(this.$route.params.building_id)
+    .then(
+      (response) => {
+        this.floors = response.data
+      }
+    )
+    .catch(
+      (err) => {
+        console.log(err)
+      }
+    )
+  }
 }
 </script>

@@ -10,3 +10,10 @@ export const login = (params) => { return axios.post(`${host}/login/`, params) }
 
 // 获取用户管理学生的对应宿舍楼
 export const getBuildings = () => { return axios.get(`${host}/buildings`) }
+
+// 获取用户管理学生的对应宿舍楼的宿舍楼层
+export const getFloors = (building_id) => { return axios.get(`${host}/floors`, {
+    params: {
+        building_id: building_id,
+    }
+}) }

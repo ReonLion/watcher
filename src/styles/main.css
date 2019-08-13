@@ -1,5 +1,5 @@
-.list-scrollbar{
-  height: calc(100vh - 48px);
+.scroll-area{
+    height: calc(100vh - 48px);
 }
 
 .border-all{
