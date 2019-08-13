@@ -33,7 +33,7 @@ export default {
         return{
             to: {
                 name: "floors",
-                params: {"building_id": 2},
+                params: {"building_id": this.building.id},
             }
         }
     }

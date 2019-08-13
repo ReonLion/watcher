@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let host = 'http://127.0.0.1:8000'
+let host = 'http://106.14.205.68:8000'
 
 // 获取学校列表
 export const getSchools = () => { return axios.get(`${host}/schools/`) }

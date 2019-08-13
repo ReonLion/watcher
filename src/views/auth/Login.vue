@@ -19,8 +19,8 @@
               <v-select v-model="selectSchool" @change="schoolSelectChange"
               :items="schools" item-text="name" name="school" 
               append-icon="account_balance" label="学校" type="text" outline flat></v-select>
-              <v-text-field v-model="employeeNo" name="no" append-icon="person" label="职工号" type="text" outline></v-text-field>
-              <v-text-field v-model="password" name="password" append-icon="lock" label="密码" type="password" outline></v-text-field>
+              <v-text-field v-model="employeeNo" ref="no" append-icon="person" label="职工号" type="text" outline browser-autocomplete="off"></v-text-field>
+              <v-text-field v-model="password" ref="password" append-icon="lock" label="密码" type="password" outline browser-autocomplete="new-password"></v-text-field>
             </v-form>
             <div class="my-0 py-0 error--text" v-show="loginErr">用户名或密码错误</div>
             <!-- 登录按钮 -->
@@ -31,7 +31,7 @@
                 <a class="caption left" href="http://www.baidu.com">忘记密码？</a>
               </v-flex>
               <v-flex xs6 md6>
-                <a class="caption right" href="http://www.baidu.com">管理员入口</a>
+                <a class="caption right" href="http://106.14.205.68:8000/xadmin">管理员入口</a>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -70,7 +70,10 @@ export default {
     computed: {
       // username=学校编号+职工号
       username: function(){
-        return this.selectSchool.no + this.employeeNo
+        if(this.employeeNo.endsWith('admin'))
+          return this.employeeNo
+        else
+          return this.selectSchool.no + this.employeeNo
       },
     },
 
@@ -130,7 +133,7 @@ export default {
       cookie.delCookie("token")
       // 清除vuex缓存
       this.$store.dispatch('setUserInfo')
-    }
+    },
 }
 </script>
 

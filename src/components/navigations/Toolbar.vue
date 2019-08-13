@@ -24,7 +24,7 @@
                 </v-list>
             </v-menu>
             <!-- 退出按钮 -->
-            <v-btn flat color="black">
+            <v-btn flat color="black" @click="logout">
                 <span>退出</span>
                 <v-icon left>exit_to_app</v-icon>
             </v-btn>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import cookie from '../../assets/js/cookie';
 export default {
     data(){
         return{
@@ -42,6 +43,17 @@ export default {
                 {icon: "home", text: "考\xa0\xa0\xa0\xa0勤", route: "/HomePage/Online"},
                 {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/HomePage/Settings"},
             ]
+        }
+    },
+
+    methods: {
+        logout: function(){
+            cookie.delCookie('token')
+            cookie.delCookie('name')
+            // 触发vuex
+            this.$store.dispatch('SET_USERINFO')
+            // 跳转到登录页面
+            this.$router.replace({name: 'Login',})
         }
     }
 }
