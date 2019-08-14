@@ -17,8 +17,8 @@
                 <!-- 导航连接 -->
                 <v-flex class="mt-5">
                     <v-list-tile v-for="(link, i) in links" :key="i"
-                    :to="link.route" :active-class="color">
-                        <v-list-tile-action>
+                    :to="link.route" :active-class="color" class="tile">
+                        <v-list-tile-action class="white--text text-xs-center">
                             <v-icon>{{link.icon}}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-title class="white--text text-xs-center">{{link.text}}</v-list-tile-title>
@@ -44,10 +44,16 @@ export default {
             iconSize: "100px",
             color: "success",
             links: [
-               {icon: "home", text: "考\xa0\xa0\xa0\xa0勤", route: "/HomePage/StudentOnline"},
+               {icon: "home", text: "学\xa0生\xa0在\xa0线", route: "/HomePage/StudentOnline"},
                {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/HomePage/Settings"},
             ]
         }
     }
 }
 </script>
+
+<style scoped>
+    .tile:hover {
+        background-color: rgb(100, 102, 100);
+    }
+</style>

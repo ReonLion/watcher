@@ -8,6 +8,7 @@ Vue.use(Vuetify, {
     primary: '#9652ff',
     success: '#3cd1c2',
     info: '#ffaa2c',
+    warning: '#ffa500',
     error: '#f83e70',
   }
 })

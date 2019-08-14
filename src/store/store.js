@@ -29,9 +29,31 @@ const vueScrollOps = {
     },
 }
 
+const buildingsInfo = {
+    online_num: null,
+    total_num: null,
+    buildings: [],
+}
+
+const floorsInfo = {
+    online_num: null,
+    total_num: null,
+    floors: [],
+}
+
+const dormsInfo = {
+    online_num: null,
+    total_num: null,
+    dorms: [],
+}
+
+
 const state = {
     userInfo,
     vueScrollOps,
+    buildingsInfo,
+    floorsInfo,
+    dormsInfo,
 };
 
 export default new Vuex.Store({

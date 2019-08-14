@@ -1,2 +1,8 @@
 // 使用常量代表mutations事件类型，方便在此更改
 export const SET_USERINFO = 'SET_USERINFO'
+export const SET_BUILDINGS_INFO = 'SET_BUILDINGS_INFO'
+export const SET_FLOORS_INFO = 'SET_FLOORS_INFO'
+export const SET_DORMS_INFO = 'SET_DORMS_INFO'
+export const CLEAR_BUILDINGS_INFO = 'CLEAR_BUILDINGS_INFO'
+export const CLEAR_FLOORS_INFO = 'CLEAR_FLOORS_INFO'
+export const CLEAR_DORMS_INFO = 'CLEAR_DORMS_INFO'

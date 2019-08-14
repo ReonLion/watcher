@@ -17,3 +17,12 @@ export const getFloors = (building_id) => { return axios.get(`${host}/floors`, {
         building_id: building_id,
     }
 }) }
+
+// 获取用户管理学生的对应宿舍
+export const getDorms = (building_id, floor) => { return axios.get(`${host}/dorms`, {
+    params: {
+        building_id: building_id,
+        floor: floor,
+    }
+}) }
+

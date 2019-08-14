@@ -2,7 +2,8 @@
     <div>
         <v-layout row wrap>
             <v-flex xs12 md12>
-                <online-mini-statistics area="所有楼栋" online="1000" total="1200"></online-mini-statistics>
+                <online-mini-statistics area="所有楼栋" :online="online_num" 
+                :total="total_num"></online-mini-statistics>
             </v-flex>
             <!-- <v-divider style="border-width: 0.5px; border-color: #3F51B5;"></v-divider> -->
             <v-flex xs12 md12 align-self-center>
@@ -20,11 +21,21 @@ export default {
     data(){
         return{
             chartColors: ["#3CD1C2", "#ff6347"],
-            chartData:{
+        }
+    },
+    computed: {
+        online_num: function(){
+            return this.$store.state.buildingsInfo.online_num
+        },
+        total_num: function(){
+            return this.$store.state.buildingsInfo.total_num
+        },
+        chartData: function(){
+            return {
                 columns: ["status", "num"],
                 rows: [
-                    {"status": "在线", "num": "1000"},
-                    {"status": "不在线", "num": "200"},
+                    {"status": "在线", "num": this.online_num},
+                    {"status": "不在线", "num": this.total_num-this.online_num},
                 ],
             }
         }

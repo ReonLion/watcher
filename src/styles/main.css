@@ -7,9 +7,13 @@
 }
 
 .border-part{
-    border-left: 4px solid orange;
+    border-left: 4px solid #ffa500;
 }
 
 .border-none{
-    border-left: 4px solid #ff6347;
+    border-left: 4px solid #f83e70;
+}
+
+.v-card.on-hover{
+    background: rgb(219, 217, 217);
 }
