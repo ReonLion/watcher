@@ -30,20 +30,26 @@ const vueScrollOps = {
 }
 
 const buildingsInfo = {
-    online_num: null,
-    total_num: null,
+    loading: true,
+    online_dorms_num: null,
+    total_dorms_num: null,
+    warning_dorms_num: null,
     buildings: [],
 }
 
 const floorsInfo = {
-    online_num: null,
-    total_num: null,
+    loading: true,
+    online_dorms_num: null,
+    total_dorms_num: null,
+    warning_dorms_num: null,
     floors: [],
 }
 
 const dormsInfo = {
-    online_num: null,
-    total_num: null,
+    loading: true,
+    online_dorms_num: null,
+    total_dorms_num: null,
+    warning_dorms_num: null,
     dorms: [],
 }
 

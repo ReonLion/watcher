@@ -3,17 +3,43 @@
 }
 
 .border-all{
-    border-left: 4px solid #3CD1C2;
+    border-left: 4px solid #4CAF50;
 }
 
 .border-part{
-    border-left: 4px solid #ffa500;
+    border-left: 4px solid #FFC107;
 }
 
 .border-none{
-    border-left: 4px solid #f83e70;
+    border-left: 4px solid #FF5252;
 }
 
 .v-card.on-hover{
     background: rgb(219, 217, 217);
 }
+
+.v-card.warning-box{
+    box-shadow:  #FF5252 0px 0px 10px inset;
+    /* background: #FF5252; */
+}
+
+.v-card.selected{
+    /* box-shadow:  #FF5252 0px 0px 10px inset; */
+    background: #90CAF9;
+}
+
+.rounded-card{
+    border-radius:8px;
+}
+
+.left-rounded-card{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.outlined {
+    border-radius:8px;
+    /* outline:#3F51B5 solid medium; */
+    border: #2196F3 2px solid;
+}
+

@@ -27,4 +27,3 @@ export function getOnlineStyleClass(online_num, total_num){
     return null
 }
 
-

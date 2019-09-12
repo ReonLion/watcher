@@ -1,6 +1,6 @@
 <template>
     <v-chip small disabled :color="color">
-      <span class="white--text">{{text}}</span>
+      <span v-if="show_text" class="white--text">{{text}}</span>
     </v-chip>
 </template>
 
@@ -8,9 +8,14 @@
 import {OnlineStatus,} from '@/assets/js/utils'
 
 export default {
-    props: [
-        'tag'
-    ],
+    props: {
+        tag: OnlineStatus,
+        show_text: {
+            type: Boolean,
+            default: true,
+        },
+    }, 
+
     data(){
         return{
 
@@ -29,11 +34,11 @@ export default {
         },
         text: function(){
             if(this.tag==OnlineStatus.NONE)
-                return '无人'
+                return 'NONE'
             else if(this.tag==OnlineStatus.PART)
-                return '缺勤'
+                return 'PART'
             else if(this.tag==OnlineStatus.ALL)
-                return '全勤'
+                return 'ALL'
             else
                 return null
         }

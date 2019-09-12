@@ -1,19 +1,20 @@
 <template>
     <div class="scroll-area">
-        <vue-scroll :ops="$store.state.vueScrollOps">
-          <template v-for="(building, index) in $store.state.buildingsInfo.buildings">
+      <div v-if="loading">载入中...</div>
+      <vue-scroll :ops="$store.state.vueScrollOps">
+        <template v-for="(building, index) in $store.state.buildingsInfo.buildings">
             <div :key="index">
               <v-divider></v-divider>
               <building-card :building="building"></building-card>
             </div>
-          </template>
-        </vue-scroll>
+        </template>
+      </vue-scroll>
     </div>
 </template>
 
 <script>
 import vueScroll from 'vuescroll'
-import BuildingCard from '@/components/student_online/building/BuildingCard'
+import BuildingCard from '@/components/cards/BuildingListCard'
 export default {
   components: {vueScroll, BuildingCard},
   data(){
@@ -22,11 +23,17 @@ export default {
     }
   },
 
+  computed: {
+    loading: function() {
+      return this.$store.state.buildingsInfo.loading
+    }
+  },
+
   created: function(){
     // 同步清除vuex中dormsInfo数据
     this.$store.commit('CLEAR_BUILDINGS_INFO')
-    // 异步更新vuex中buildingsInfo数据
-    this.$store.dispatch('setBuildingsInfo')
+    // 同步步更新vuex中buildingsInfo数据
+    this.$store.commit('SET_BUILDINGS_INFO')
   },
 }
 </script>

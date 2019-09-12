@@ -44,8 +44,9 @@ export default {
             iconSize: "100px",
             color: "success",
             links: [
-               {icon: "home", text: "学\xa0生\xa0在\xa0线", route: "/HomePage/StudentOnline"},
-               {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/HomePage/Settings"},
+                {icon: "home", text: "首\xa0\xa0\xa0\xa0页", route: "/Homepage"},
+               {icon: "home", text: "实\xa0时\xa0信\xa0息", route: "/RealtimeInfo"},
+               {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"},
             ]
         }
     }

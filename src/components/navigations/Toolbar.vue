@@ -7,10 +7,6 @@
     <v-spacer></v-spacer>
     <v-toolbar-items>
         <v-flex align-center layout>
-            <!--搜索-->
-            <v-text-field append-icon="search" class="mr-3" label="搜索..." 
-            hide-details flat color="purple" solo
-            />
             <!--下拉菜单-->
             <v-menu offset-y>
                 <v-btn slot="activator" flat>

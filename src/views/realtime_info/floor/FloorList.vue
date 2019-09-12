@@ -1,5 +1,6 @@
 <template>
     <div class="scroll-area">
+        <div v-if="loading">载入中...</div>
         <vue-scroll :ops="$store.state.vueScrollOps">
           <template v-for="(floor, index) in floors">
               <div :key="index">
@@ -13,7 +14,7 @@
 
 <script>
 import vueScroll from 'vuescroll'
-import FloorCard from '@/components/student_online/floor/FloorCard'
+import FloorCard from '@/components/cards/FloorListCard'
 export default {
   components: {vueScroll, FloorCard},
   data(){
@@ -26,6 +27,10 @@ export default {
     floors: function()
     {
       return this.$store.state.floorsInfo.floors
+    },
+
+    loading: function() {
+      return this.$store.state.floorsInfo.loading
     }
   },
 
@@ -33,7 +38,7 @@ export default {
     // 同步清除vuex中floorsInfo数据
     this.$store.commit('CLEAR_FLOORS_INFO')
     // 异步更新vuex中floorsInfo数据
-    this.$store.dispatch('setFloorsInfo', {building_id: this.$route.params.building_id})
+    this.$store.dispatch('setFloorsInfo', {building_id: this.$route.query.building_id})
   }
 }
 </script>

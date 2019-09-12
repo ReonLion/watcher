@@ -95,7 +95,7 @@ export default {
             // 存储在vuex中
             this.$store.dispatch("setUserInfo")
             // 路由跳转
-            this.$router.push({name: 'HomePage'})
+            this.$router.replace({name: 'HomePage'})
           }
         )
         .catch(

@@ -1,16 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import HomePage from './views/homepage/HomePage.vue'
+import RootLayout from '@/views/layout'
+import HomePage from './views/homepage/Homepage.vue'
 import Settings from './views/Settings.vue'
 import Login from './views/auth/Login.vue'
-import StudentOnlineLayout from '@/components/student_online/StudentOnlineLayout'
-import BuildingList from '@/components/student_online/building/BuildingList'
-import BuildingProfile from '@/components/student_online/building/BuildingProfile'
-import FloorList from '@/components/student_online/floor/FloorList'
-import FloorProfile from '@/components/student_online/floor/FloorProfile'
-import DormList from '@/components/student_online/dorm/DormList'
-import DormProfile from '@/components/student_online/dorm/DormProfile'
+import RealtimeInfoLayout from '@/views/realtime_info/layout'
+import BuildingList from '@/views/realtime_info/building/BuildingList'
+import BuildingProfile from '@/views/realtime_info/building/BuildingProfile'
+import FloorList from '@/views/realtime_info/floor/FloorList'
+import FloorProfile from '@/views/realtime_info/floor/FloorProfile'
+import DormList from '@/views/realtime_info/dorm/DormList'
+import DormProfile from '@/views/realtime_info/dorm/DormProfile'
+import DormDetail from '@/views/realtime_info/dorm/DormDetail'
 
 Vue.use(Router)
 
@@ -24,50 +26,79 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/HomePage',
-      name: 'HomePage',
-      component: HomePage,
-      alias: '/',
-      redirect: '/HomePage/StudentOnline',
-      children:[
+      path: '/',
+      name: 'root',
+      component: RootLayout,
+      children: [
         {
-          path: 'StudentOnline',
-          name: 'StudentOnline',
-          component: StudentOnlineLayout,
-          redirect: '/HomePage/StudentOnline/buidlings',
-          children:[
+          path: '/Homepage',
+          name: 'Homepage',
+          component: HomePage,
+        },
+        {
+          path: '/RealtimeInfo',
+          name: 'RealtimeInfo',
+          component: RealtimeInfoLayout,
+          redirect: '/RealtimeInfo/buildings',
+          children: [
             {
-              path: 'buidlings',
-              name: 'buidlings',
+              path: 'buildings',
+              name: 'buildings',
               components: {
                 'list': BuildingList,
                 'profile': BuildingProfile,
-              },
+              }
             },
             {
-              path: 'buidlings/:building_id',
+              path: 'floors/',
               name: 'floors',
               components: {
                 'list': FloorList,
                 'profile': FloorProfile,
               },
+              query: {
+                building_id: Number,
+              },
               props: {
                 'list': true,
                 'profile': true,
-              },
+              }
             },
             {
-              path: 'buidlings/:building_id/:floor',
+              path: 'dorms/',
               name: 'dorms',
               components: {
                 'list': DormList,
                 'profile': DormProfile,
               },
+              query: {
+                building_id: String,
+                floor: Number,
+                dorm_id: Number,
+              },
               props: {
                 'list': true,
                 'profile': true,
-              },
+              }
             },
+            {
+              path: 'dormDetail/',
+              name: 'dormDetail',
+              components: {
+                'list': DormList,
+                'profile': DormDetail,
+              },
+              query: {
+                building_id: String,
+                floor: Number,
+                dorm_id: Number,
+                search: String,
+              },
+              props: {
+                'list': true,
+                'profile': true,
+              }
+            }
           ]
         },
       ]

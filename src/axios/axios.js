@@ -13,7 +13,6 @@ axios.interceptors.request.use(
             // 存在token则加入
             config.headers.Authorization = `token ${store.state.userInfo.token}`
         }
-        console.log(config)
         return config
     },
     err => {
