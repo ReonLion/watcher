@@ -14,6 +14,15 @@ const userInfo = {
     token: cookie.getCookie("token") || "",
 };
 
+const userDetail = {
+    name: null,
+    department: null,
+    email: null,
+    canWatch: null,
+    canRegister: null,
+    canControl: null,
+}
+
 const vueScrollOps = {
     rail: {
         opacity: '0.2',
@@ -56,6 +65,7 @@ const dormsInfo = {
 
 const state = {
     userInfo,
+    userDetail,
     vueScrollOps,
     buildingsInfo,
     floorsInfo,

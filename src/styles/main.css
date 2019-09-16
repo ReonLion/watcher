@@ -43,3 +43,9 @@
     border: #2196F3 2px solid;
 }
 
+.outlined-form {
+    border-radius:8px;
+    /* outline:#3F51B5 solid medium; */
+    border: #2196F3 1px solid;
+}
+

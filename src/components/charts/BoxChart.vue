@@ -1,5 +1,5 @@
 <template>
-  <v-card :color="cardColor" :dark="computeCardDark" class="rounded-card">
+  <v-card :color="cardColor" :dark="computeCardDark" class="rounded-card" :flat="flat">
     <v-card-title>
       <div class="layout row ma-0">
         <div class="subheading">{{ title }}</div>
@@ -22,6 +22,10 @@ export default {
     EChart
   },
   props: {
+    flat: {
+      type: Boolean,
+      default: true,
+    },
     title: String,
     gradient: {
       type: Boolean,
@@ -39,7 +43,12 @@ export default {
     },
     type: String,
     chartColor: Array,
-    data: Array,
+    data: {
+      type: [Array, Object],
+      default: function() {
+        return []
+      }
+    },
     ymax: {
       type: Number,
       default: null,

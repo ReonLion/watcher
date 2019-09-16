@@ -40,7 +40,7 @@ axios.interceptors.response.use(
                 console.log("服务器错误")
                 break
         }
-        // 返回接口返回的错误信息
-        return Promise.reject(error.response.data)
+        // 返回接口返回的错误信息, 不要返回error.response.data，不然其它地方拿不到status.code
+        return Promise.reject(error)
     }
 )

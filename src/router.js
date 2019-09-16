@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import RootLayout from '@/views/layout'
 import HomePage from './views/homepage/Homepage.vue'
-import Settings from './views/Settings.vue'
 import Login from './views/auth/Login.vue'
 import RealtimeInfoLayout from '@/views/realtime_info/layout'
 import BuildingList from '@/views/realtime_info/building/BuildingList'
@@ -13,6 +12,9 @@ import FloorProfile from '@/views/realtime_info/floor/FloorProfile'
 import DormList from '@/views/realtime_info/dorm/DormList'
 import DormProfile from '@/views/realtime_info/dorm/DormProfile'
 import DormDetail from '@/views/realtime_info/dorm/DormDetail'
+import HistoryLayout from '@/views/history/layout'
+import BindDeviceLayout from '@/views/bind_device/layout'
+import SettingsLayout from '@/views/settings/layout'
 
 Vue.use(Router)
 
@@ -101,12 +103,22 @@ export default new Router({
             }
           ]
         },
+        {
+          path: '/History',
+          name: 'History',
+          component: HistoryLayout,
+        },
+        {
+          path: '/BindDevice',
+          name: 'BindDevice',
+          component: BindDeviceLayout,
+        },
+        {
+          path: '/Settings',
+          name: 'Settings',
+          component: SettingsLayout,
+        }
       ]
-    },
-    {
-      path: '/Settings',
-      name: 'Settings',
-      component: Settings,
     },
   ]
 })

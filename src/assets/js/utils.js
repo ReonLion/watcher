@@ -27,3 +27,17 @@ export function getOnlineStyleClass(online_num, total_num){
     return null
 }
 
+
+export function getMaxValue(listObj, key) {
+    let len = listObj.length
+    if (len == 0) {
+        return null
+    }
+    let max = listObj[0][key]
+    for(let i=1; i < len; ++i) {
+        if(listObj[i][key] > max) {
+            max = listObj[i][key]
+        }
+    }
+    return max
+}

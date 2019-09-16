@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 let host = 'http://106.14.205.68:8000'
+// let host = 'http://127.0.0.1:8000'
 
 // 获取学校列表
 export const getSchools = () => { return axios.get(`${host}/SchoolList/`) }
@@ -56,3 +57,37 @@ export const getDorm24hHistory = (dorm_id) => { return axios.get(`${host}/24hHis
     }
 }) }
 
+
+export const getHistoryData = (page, start_time, end_time, search, page_size) => { return axios.get(`${host}/HistoryData`, {
+    params: {
+        start_time: start_time,
+        end_time: end_time,
+        search: search,
+        page_size: page_size,
+        page: page,
+    }
+}) }
+
+export const getBuildings = () => { return axios.get(`${host}/Buildings/`) }
+
+export const getBuildingFloors = (building_id) => { return axios.get(`${host}/BuildingFloors/`, {
+    params: {
+        building_id: building_id,
+    }
+}) }
+
+export const getBuildingFloorDorms = (building_id, floor) => { return axios.get(`${host}/BuildingFloorDorms/`, {
+    params: {
+        building_id: building_id,
+        floor: floor,
+    }
+}) }
+
+export const postBindDevice = (deviceNo, dormId) => { return axios.post(`${host}/BindDevice/`, {
+    no: deviceNo,
+    dorm: dormId,
+}) }
+
+export const getBindDevice = () => { return axios.get(`${host}/BindDevice/`) }
+
+export const deleteBindDevice = (deviceNo) => { return axios.delete(`${host}/BindDevice/${deviceNo}/`) }

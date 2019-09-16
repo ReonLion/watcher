@@ -33,7 +33,7 @@ export default {
     // 同步清除vuex中dormsInfo数据
     this.$store.commit('CLEAR_BUILDINGS_INFO')
     // 同步步更新vuex中buildingsInfo数据
-    this.$store.commit('SET_BUILDINGS_INFO')
+    this.$store.dispatch('setBuildingsInfo')
   },
 }
 </script>

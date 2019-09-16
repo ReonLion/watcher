@@ -45,8 +45,10 @@ export default {
             color: "success",
             links: [
                 {icon: "home", text: "首\xa0\xa0\xa0\xa0页", route: "/Homepage"},
-               {icon: "home", text: "实\xa0时\xa0信\xa0息", route: "/RealtimeInfo"},
-               {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"},
+                {icon: "home", text: "实\xa0时\xa0信\xa0息", route: "/RealtimeInfo"},
+                {icon: "home", text: "历\xa0史\xa0查\xa0询", route: "/History"},
+                {icon: "home", text: "绑\xa0定\xa0设\xa0备", route: "/BindDevice"},
+                {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"},
             ]
         }
     }

@@ -20,7 +20,7 @@
                 </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">更新时间</div>
-                    <div>09月03日 14:11</div>
+                    <div>19.09.13 14:11</div>
                 </v-flex>
                 <v-flex xs1 md1 align-self-center>
                     <online-status-chip :tag='tag'></online-status-chip>
