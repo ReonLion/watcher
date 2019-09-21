@@ -17,7 +17,7 @@
             <v-form id="loginForm" autocomplete="false" class="pa-0">
               <!-- item-text字段用于展示，item-value字段代表真正的值，值与v-model绑定，这里值是学校编号 -->
               <v-select v-model="selectSchool" @change="schoolSelectChange"
-              :items="schools" item-text="name" name="school" 
+              :items="schools" item-text="name" name="school" item-value="no"
               append-icon="account_balance" label="学校" type="text" outline flat></v-select>
               <v-text-field v-model="employeeNo" ref="no" append-icon="person" label="职工号" type="text" outline browser-autocomplete="off"></v-text-field>
               <v-text-field v-model="password" ref="password" append-icon="lock" label="密码" type="password" outline browser-autocomplete="new-password"></v-text-field>
@@ -28,7 +28,8 @@
             <!-- 后台超链接 -->
             <v-layout>
               <v-flex xs6 md6>
-                <a class="caption left" href="http://www.baidu.com">忘记密码？</a>
+                <a class="caption left" @click.stop="changePassword=true">忘记密码？</a>
+                <forget-password-dialog v-if="changePassword" :show.sync="changePassword"></forget-password-dialog>
               </v-flex>
               <v-flex xs6 md6>
                 <a class="caption right" href="http://106.14.205.68:8000/xadmin">管理员入口</a>
@@ -47,14 +48,16 @@ import IconBubble1 from '@/components/icon/Bubble1'
 import IconBubble2 from '@/components/icon/Bubble2'
 import {getSchools, login} from '../../api/api'
 import cookie from '../../assets/js/cookie'
+import ForgetPasswordDialog from '@/components/dialogs/ForgetPasswordDialog'
 
 export default {
-    components: {IconBubble1, IconBubble2, },
+    components: {IconBubble1, IconBubble2, ForgetPasswordDialog},
 
     data() {
       return {
+        changePassword: false,
         loading: false,
-        employeeNo: null,
+        employeeNo: '',
         password: null,
         loginErr: false,
         pics: [
@@ -70,10 +73,10 @@ export default {
     computed: {
       // username=学校编号+职工号
       username: function(){
-        if(this.employeeNo.endsWith('admin'))
+        if(this.employeeNo.endsWith('admin') || this.employeeNo.endsWith('register'))
           return this.employeeNo
         else
-          return this.selectSchool.no + this.employeeNo
+          return this.selectSchool + this.employeeNo
       },
     },
 
@@ -95,7 +98,7 @@ export default {
             // 存储在vuex中
             this.$store.dispatch("setUserInfo")
             // 路由跳转
-            this.$router.replace({name: 'HomePage'})
+            this.$router.replace({name: 'root'})
           }
         )
         .catch(
@@ -116,7 +119,7 @@ export default {
         getSchools().then(
           (response) => {
             this.schools = response.data
-            this.selectSchool = this.schools[0]
+            this.selectSchool = this.schools[0].no
           }
         ).catch(
           (error) => console.log(error)

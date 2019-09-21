@@ -114,7 +114,6 @@ export default {
 
   methods: {
     getMaxValue: function(listObj, key) {
-      console.log(getMaxValue(listObj, key))
       return getMaxValue(listObj, key)
     }
   }

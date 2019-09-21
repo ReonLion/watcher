@@ -57,7 +57,6 @@ export const getDorm24hHistory = (dorm_id) => { return axios.get(`${host}/24hHis
     }
 }) }
 
-
 export const getHistoryData = (page, start_time, end_time, search, page_size) => { return axios.get(`${host}/HistoryData`, {
     params: {
         start_time: start_time,
@@ -91,3 +90,38 @@ export const postBindDevice = (deviceNo, dormId) => { return axios.post(`${host}
 export const getBindDevice = () => { return axios.get(`${host}/BindDevice/`) }
 
 export const deleteBindDevice = (deviceNo) => { return axios.delete(`${host}/BindDevice/${deviceNo}/`) }
+
+export const getUserDetail = () => { return axios.get(`${host}/UserDetail/`) }
+
+export const postVerifyCode = (username, email, register) => {
+    if (register) {
+        // 初次绑定，邮箱不能重复
+        return axios.post(`${host}/VerifyCodeofRegister/`, {email:email})
+    }
+    else {
+        // 更改密码等时，发送验证码，邮箱在userprofile中可以重复，但必须存在
+        return axios.post(`${host}/VerifyCodeofOperation/`, {username: username, email:email})
+    }
+}
+
+
+export const patchBindEmail = (username, email, code) => { return axios.patch(`${host}/User/${username}/`, {
+    username: username,
+    code: code,
+    verify_email: email,
+    email: email,
+}) }
+
+export const delBindEmail = (username, email, code) => { return axios.patch(`${host}/User/${username}/`, {
+    username: username,
+    code: code,
+    verify_email: email,
+    email: "",
+}) }
+
+export const patchPassword = (username, email, code, password) => { return axios.patch(`${host}/User/${username}/`, {
+    username: username,
+    code: code,
+    verify_email: email,
+    password: password,
+}) }

@@ -3,6 +3,7 @@
     <v-toolbar-title class="text-uppercase grey--text">
         <span class="font-weight-light">Watch</span>
         <span>er</span>
+        <span class="font-weight-light">--{{name}}</span>
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
@@ -35,10 +36,6 @@ import cookie from '../../assets/js/cookie';
 export default {
     data(){
         return{
-            links: [
-                {icon: "home", text: "考\xa0\xa0\xa0\xa0勤", route: "/HomePage/Online"},
-                {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/HomePage/Settings"},
-            ]
         }
     },
 
@@ -47,10 +44,18 @@ export default {
             cookie.delCookie('token')
             cookie.delCookie('name')
             // 触发vuex
-            this.$store.dispatch('SET_USERINFO')
+            this.$store.dispatch('setUserInfo')
             // 跳转到登录页面
             this.$router.replace({name: 'Login',})
         }
+    },
+    computed: {
+        links: function() {
+            return this.$store.state.homepageLinks
+        },
+        name: function() {
+            return this.$store.state.userDetail.name
+        },
     }
 }
 </script>

@@ -1,6 +1,6 @@
 import * as types from "./mutations-types"
 import cookie from "../assets/js/cookie"
-import {getBuildingsInfo, getFloorsInfo, getDormsInfo} from '@/api/api'
+import {getBuildingsInfo, getFloorsInfo, getDormsInfo, getUserDetail} from '@/api/api'
 import Vue from "vue"
 import Axios from "axios"
 // 全局默认使用axios
@@ -12,6 +12,23 @@ export default {
             name: cookie.getCookie("name"),
             token: cookie.getCookie("token"),
         }
+    },
+
+    [types.SET_USER_DETAIL](state) {
+        state.userDetail.loading = true
+        getUserDetail()
+        .then(
+            (response) => {
+                state.userDetail.name = response.data.name
+                state.userDetail.username = response.data.username
+                state.userDetail.department = response.data.department
+                state.userDetail.email = response.data.email
+                state.userDetail.canWatch = response.data.can_watch
+                state.userDetail.canRegister = response.data.can_register
+                state.userDetail.canControl = response.data.can_control
+                state.userDetail.loading = false
+            }
+        )
     },
 
     [types.SET_BUILDINGS_INFO](state){
@@ -90,6 +107,14 @@ export default {
         )
     },
 
+    [types.PUSH_HOMEPAGE_LINK](state, link) {
+        state.homepageLinks.push(link)
+    },
+
+    [types.CLEAR_HOMEPAGE_LINK](state) {
+        state.homepageLinks = []
+    },
+
     [types.CLEAR_BUILDINGS_INFO](state){
         state.buildingsInfo.loading = true
         state.buildingsInfo.online_dorms_num = null
@@ -109,5 +134,16 @@ export default {
         state.dormsInfo.online_dorms_num = null
         state.dormsInfo.total_dorms_num = null
         state.dormsInfo.dorms = []
+    },
+
+    [types.CLEAR_USER_DETAIL](state) {
+        state.userDetail.loading = true
+        state.userDetail.name = null
+        state.userDetail.username = null
+        state.userDetail.department = null
+        state.userDetail.email = null
+        state.userDetail.canWatch = false
+        state.userDetail.canRegister = false
+        state.userDetail.canControl = false
     },
 }

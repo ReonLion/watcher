@@ -16,11 +16,13 @@ const userInfo = {
 
 const userDetail = {
     name: null,
+    username: null,
     department: null,
     email: null,
-    canWatch: null,
-    canRegister: null,
-    canControl: null,
+    loading: true,
+    canWatch: false,
+    canRegister: false,
+    canControl: false,
 }
 
 const vueScrollOps = {
@@ -37,6 +39,10 @@ const vueScrollOps = {
         minSize: 0.2
     },
 }
+
+const homepageLinks = [
+    
+]
 
 const buildingsInfo = {
     loading: true,
@@ -67,6 +73,7 @@ const state = {
     userInfo,
     userDetail,
     vueScrollOps,
+    homepageLinks,
     buildingsInfo,
     floorsInfo,
     dormsInfo,

@@ -6,11 +6,11 @@
                 <!-- 头像 -->
                 <v-flex align-self-center class="mt-5">
                     <v-avatar :size="iconSize">
-                        <v-img :src="employeeInfo.icon"></v-img>
+                        <v-img :src="icon"></v-img>
                     </v-avatar>
                     <!-- 姓名学院等 -->
-                    <div class="my-3 white--text text-xs-center title">{{employeeInfo.name}}</div>
-                    <div class="my-3 white--text text-xs-center body-1">{{employeeInfo.department}}</div>
+                    <div class="my-3 white--text text-xs-center title">{{name}}</div>
+                    <div class="my-3 white--text text-xs-center body-1">{{department}}</div>
                 </v-flex>
                 <!-- 分割线 -->
                 <v-divider style="border-width: 0.5px;"/>
@@ -36,20 +36,20 @@ export default {
             showDrawer: true,
             image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
             sidebarOverlayGradiant: 'rgba(27, 27, 27, 0.74),rgba(27, 27, 27, 0.74)',
-            employeeInfo: {
-                icon: "/avatar-6.jpg",
-                name: "李慧颖",
-                department: "自动化学院",
-            },       
+            icon: "/avatar-6.jpg",
             iconSize: "100px",
             color: "success",
-            links: [
-                {icon: "home", text: "首\xa0\xa0\xa0\xa0页", route: "/Homepage"},
-                {icon: "home", text: "实\xa0时\xa0信\xa0息", route: "/RealtimeInfo"},
-                {icon: "home", text: "历\xa0史\xa0查\xa0询", route: "/History"},
-                {icon: "home", text: "绑\xa0定\xa0设\xa0备", route: "/BindDevice"},
-                {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"},
-            ]
+        }
+    },
+    computed: {
+        links: function() {
+            return this.$store.state.homepageLinks
+        },
+        name: function() {
+            return this.$store.state.userDetail.name
+        },
+        department: function() {
+            return this.$store.state.userDetail.department
         }
     }
 }

@@ -41,7 +41,7 @@ export default {
         validate: function() {
             // 如果表单验证通过
             if(this.$refs.form.validate()) {
-                this.loading = false
+                this.loading = true
                 deleteBindDevice(this.selectDevice.no)
                 .then(
                     (response) => {
