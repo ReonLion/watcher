@@ -2,7 +2,7 @@
     <v-container fluid class="ma-0 pa-0">
         <v-layout v-if="(!loading) && (!empty)" row wrap>
             <v-flex xs6 md6 pl-1 pr-1>
-                <dorm-control-card v-if="getDetailFlag" :dorms="dorms"></dorm-control-card>
+                <dorm-control-card v-if="getDetailFlag" :dorm="dorm"></dorm-control-card>
             </v-flex>
             <v-flex xs6 md6 pr-1 pb-1>
                 <safe-status-card v-if="getDetailFlag"  :is_warning="is_warning" :warning_msg="warning_msg"></safe-status-card>
@@ -25,7 +25,7 @@ export default {
     data(){
         return{
             history: [],
-            dorms: null,
+            dorm: null,
             getHistoryFlag: false,
             getDetailFlag: false,
         }
@@ -35,20 +35,20 @@ export default {
             return this.$route.query.dorm_id
         },
         area: function(){
-            return this.dorms[0].name
+            return this.dorm.name
         },
         is_warning: function() {
-            return this.dorms[0].is_warning
+            return this.dorm.is_warning
         },
         warning_msg: function() {
-            return this.dorms[0].warning_msg
+            return this.dorm.warning_msg
         },
         loading: function() {
             return this.$store.state.dormsInfo.loading
         },
         empty: function() {
             return this.$store.state.dormsInfo.dorms.length == 0
-        }
+        },
     },
     methods: {
         getData: function() {
@@ -58,7 +58,7 @@ export default {
             .then(
                 (response) => {
                     this.getDetailFlag = true
-                    this.dorms = response.data
+                    this.dorm = response.data[0]
                 }
             )
             getDorm24hHistory(this.$route.query.dorm_id)

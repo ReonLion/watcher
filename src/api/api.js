@@ -125,3 +125,13 @@ export const patchPassword = (username, email, code, password) => { return axios
     verify_email: email,
     password: password,
 }) }
+
+
+// 控制宿舍电源
+export const patchDormLock = (dormId, lock) => { return axios.patch(`${host}/DormRealtimeStatus/${dormId}/`, {
+    lock: lock,
+}) }
+
+export const patchDormNetSwitch = (dormId, switchStatus) => { return axios.patch(`${host}/DormRealtimeStatus/${dormId}/`, {
+    net_control_switch_status: switchStatus,
+}) }

@@ -1,6 +1,7 @@
 <template>
   <v-container grid-list-xl fluid>
-    <v-layout row wrap>
+    <v-snackbar v-model="showWarning" top color="error" :timeout="timeout">有宿舍存在用电异常，请尽快处理</v-snackbar>
+    <v-layout row wrap v-if="canWatch">
       <v-flex lg3 sm6 xs12>
         <home-mini-statistic color="indigo" icon="fa fa-address-book-o" :title="totalDormNum" sub-title="宿舍"></home-mini-statistic>
       </v-flex>
@@ -44,6 +45,7 @@ export default {
 
   data() {
     return {
+      timeout: 8000,
       getHistoryFlag: false,
       buildingsHistory: [],
       dimensions: [
@@ -60,6 +62,9 @@ export default {
   },
 
   computed: {
+    canWatch: function() {
+      return this.$store.state.userDetail.canWatch
+    },
     buildings: function() {
       return this.$store.state.buildingsInfo.buildings
     },
@@ -78,6 +83,13 @@ export default {
 
     warningDormNum: function() {
       return this.$store.state.buildingsInfo.warning_dorms_num
+    },
+
+    showWarning: function() {
+      if(this.warningDormNum >= 1) {
+        return true
+      }
+      return false
     }
   },
 
@@ -104,8 +116,12 @@ export default {
       )
     }
   },
-
   created: function() {
+    // 跳转路由
+    if(this.$store.state.userDetail.canRegister && !this.$store.state.userDetail.canWatch) {
+      this.$router.replace({name: 'BindDevice'})
+      return
+    }
     // 同步清除vuex中dormsInfo数据
     this.$store.commit('CLEAR_BUILDINGS_INFO')
     // 异步更新vuex中buildingsInfo数据

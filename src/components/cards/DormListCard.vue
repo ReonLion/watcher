@@ -9,7 +9,7 @@
                 </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">是否有人在线</div>
-                    <div>{{dorm.has_student}}</div>
+                    <div>{{has_student_text}}</div>
                 </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">电流(A)</div>
@@ -21,10 +21,13 @@
                 </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">更新时间</div>
-                    <div>09月03日 14:11</div>
+                    <div>{{dorm.update_time}}</div>
                 </v-flex>
                 <v-flex xs1 md1 align-self-center>
-                    <online-status-chip :tag='tag' :show_text="chip_show_text"></online-status-chip>
+                    <!-- <online-status-chip :tag='tag' :show_text="chip_show_text"></online-status-chip> -->
+                    <v-chip small disabled :color="chipColor">
+                        <span class="white--text">{{chipText}}</span>
+                    </v-chip>
                 </v-flex>
                 <v-flex xs1 md1 align-self-center>
                     <v-icon right>keyboard_arrow_right</v-icon>
@@ -35,8 +38,6 @@
 </template>
 
 <script>
-import {getOnlineStatus,} from '@/assets/js/utils'
-import OnlineStatusChip from '@/components/chips/OnlineStatusChip'
 export default {
     props: {
         dorm: Object,
@@ -45,7 +46,7 @@ export default {
             default: null,
         }
     },
-    components: {OnlineStatusChip,},
+    components: {},
     data(){
         return{
             to: {
@@ -57,7 +58,6 @@ export default {
                     search: this.$route.query.search
                 },
             },
-            chip_show_text: false,
         }
     },
     computed: {
@@ -67,11 +67,43 @@ export default {
             else
                 return 'border-none'
         },
-        tag: function(){
+        has_student_text: function() {
             if (this.dorm.has_student)
-                return getOnlineStatus(1, 1)
+                return '有'
             else
-                return getOnlineStatus(0, 1)
+                return '无'
+        },
+        chipColor: function() {
+            if(this.dorm.net_control_switch_status == null)
+            {
+                if(this.dorm.switch_status == true)
+                    return 'success'
+                else
+                    return 'error'
+            }
+            else
+            {
+                if(this.dorm.net_control_switch_status == true)
+                    return 'success'
+                else
+                    return 'error'
+            }
+        },
+        chipText: function() {
+            if(this.dorm.net_control_switch_status == null)
+            {
+                if(this.dorm.switch_status == true)
+                    return '通电'
+                else
+                    return '断电'
+            }
+            else
+            {
+                if(this.dorm.net_control_switch_status == true)
+                    return '通电'
+                else
+                    return '断电'
+            }
         },
         warning: function() {
             return this.dorm.is_warning

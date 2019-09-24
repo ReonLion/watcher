@@ -1,10 +1,11 @@
 <template>
-    <v-btn outline fab color="blue">
+    <v-btn :loading="loading" outline fab color="blue">
       <v-icon @click="clicked" size="45px" :color="style.color">{{style.icon}}</v-icon>
     </v-btn>
 </template>
 
 <script>
+import {patchDormLock,} from '@/api/api'
 export default {
   props: {
       dorm: Object,
@@ -12,10 +13,15 @@ export default {
   data() {
       return {
           // true说明不允许设备控制，false说明设备可以自己控制
-          lock: this.dorm.lock
+          // lock: this.dorm.lock,
+          localLock: null,
+          loading: false,
       }
   },
   computed: {
+      lock: function() {
+        return this.dorm.lock
+      },
       style: function() {
         if (this.lock)
             return {
@@ -31,15 +37,17 @@ export default {
   },
   methods: {
     clicked: function() {
-      // 如果是锁定状态
-      if (this.lock) {
-        // send something
-        this.lock = false
-      }
-      else {
-        // send something
-        this.lock = true
-      }
+      patchDormLock(this.dorm.id, !this.lock)
+      .then(
+        () => {
+          location.reload()
+        }
+      )
+      .catch(
+        () => {
+
+        }
+      ) 
     }
   }
 }
