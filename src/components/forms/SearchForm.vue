@@ -34,6 +34,10 @@ export default {
             if(this.$refs.form.validate()) {
                 this.startTime = this.$refs.startTimePicker.datetime
                 this.endTime = this.$refs.endTimePicker.datetime
+                // endTime的秒设置为59
+                console.log(this.endTime)
+                this.endTime = this.endTime.substr(0, this.endTime.length-2) + '59'
+                console.log(this.endTime)
                 // 调用父组件种的方法，访问搜索api
                 this.$emit('searchButtonClick')
             }
