@@ -1,6 +1,6 @@
 <template>
     <v-btn outline large fab color="blue">
-      <v-icon @click="clicked" size="65px" :color="style.color">{{style.icon}}</v-icon>
+      <v-icon @click="clicked" size="45px" :color="style.color">{{style.icon}}</v-icon>
     </v-btn>
 </template>
 
@@ -17,8 +17,14 @@ export default {
   },
   computed: {
     status: function() {
+      // if (this.dorm.net_control_switch_status == null) {
+      //   return this.dorm.switch_status
+      // }
+      // else {
+      //   return this.dorm.net_control_switch_status
+      // }
       if (this.dorm.net_control_switch_status == null) {
-        return this.dorm.switch_status
+        return true
       }
       else {
         return this.dorm.net_control_switch_status
