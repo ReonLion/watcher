@@ -28,6 +28,8 @@ export const getDormsInfo = (search, building_id, floor) => { return axios.get(`
     }
 }) }
 
+export const getDormsList = () => { return axios.get(`${host}/DormRealtimeStatus/`) }
+
 // 获取用户管理学生的对应宿舍
 export const getDormInfo = (dorm_id) => { return axios.get(`${host}/DormRealtimeStatus/`, {
     params: {
@@ -128,10 +130,16 @@ export const patchPassword = (username, email, code, password) => { return axios
 
 
 // 控制宿舍电源
-export const patchDormLock = (dormId, lock) => { return axios.patch(`${host}/DormRealtimeStatus/${dormId}/`, {
+export const patchDormLock = (dormId, lock, switchStatus) => { return axios.patch(`${host}/DormRealtimeStatus/${dormId}/`, {
     lock: lock,
+    net_control_switch_status: switchStatus
 }) }
 
 export const patchDormNetSwitch = (dormId, switchStatus) => { return axios.patch(`${host}/DormRealtimeStatus/${dormId}/`, {
     net_control_switch_status: switchStatus,
 }) }
+
+export const LockDorms = (dormsId) => { return axios.post(`${host}/LockDorms/`, {id: dormsId}) }
+export const unlockDorms = (dormsId) => { return axios.post(`${host}/UnlockDorms/`, {id: dormsId}) }
+export const openDorms = (dormsId) => { return axios.post(`${host}/OpenDormsSwitch/`, {id: dormsId}) }
+export const closeDorms = (dormsId) => { return axios.post(`${host}/CloseDormsSwitch/`, {id: dormsId}) }

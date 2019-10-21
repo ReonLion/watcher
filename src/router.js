@@ -13,6 +13,7 @@ import DormList from '@/views/realtime_info/dorm/DormList'
 import DormProfile from '@/views/realtime_info/dorm/DormProfile'
 import DormDetail from '@/views/realtime_info/dorm/DormDetail'
 import HistoryLayout from '@/views/history/layout'
+import BulkControlLayout from '@/views/bulk_control/layout'
 import BindDeviceLayout from '@/views/bind_device/layout'
 import SettingsLayout from '@/views/settings/layout'
 
@@ -108,6 +109,11 @@ export default new Router({
           path: '/History',
           name: 'History',
           component: HistoryLayout,
+        },
+        {
+          path: '/BulkControl',
+          name: 'BulkControl',
+          component: BulkControlLayout,
         },
         {
           path: '/BindDevice',

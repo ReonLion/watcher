@@ -8,7 +8,7 @@
       </div>
     </v-card-title>
     <v-responsive class="white--text">
-      <e-chart :path-option="computeChartOption" height="200px" width="100%"> </e-chart>
+      <e-chart v-if="dataLength != 0" :path-option="computeChartOption" height="200px" width="100%"> </e-chart>
     </v-responsive>
   </v-card>
 </template>
@@ -89,6 +89,10 @@ export default {
   },
 
   computed: {
+    dataLength() {
+      return this.data.length
+    },
+
     computeCardDark() {
       return this.cardColor !== "white"
     },
