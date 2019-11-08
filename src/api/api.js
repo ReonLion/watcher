@@ -143,3 +143,10 @@ export const LockDorms = (dormsId) => { return axios.post(`${host}/LockDorms/`, 
 export const unlockDorms = (dormsId) => { return axios.post(`${host}/UnlockDorms/`, {id: dormsId}) }
 export const openDorms = (dormsId) => { return axios.post(`${host}/OpenDormsSwitch/`, {id: dormsId}) }
 export const closeDorms = (dormsId) => { return axios.post(`${host}/CloseDormsSwitch/`, {id: dormsId}) }
+
+export const getGlobalSettings = () => { return axios.get(`${host}/GlobalSettings/`) }
+
+export const postGlobalSettings = (minCurrentOffline, minCurrentOnline) => { return axios.post(`${host}/GlobalSettings/`, {
+    min_current_offline: minCurrentOffline,
+    min_current_online:minCurrentOnline,
+}) }

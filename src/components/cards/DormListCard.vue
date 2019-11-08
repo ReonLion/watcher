@@ -8,30 +8,41 @@
                     <div>{{dorm.name}}</div>
                 </v-flex>
                 <v-flex xs2 md2>
-                    <div class="caption grey--text">是否有人在线</div>
-                    <div>{{has_student_text}}</div>
+                    <div class="caption grey--text">红外检测</div>
+                    <v-icon color="success" v-if="dorm.infrared">wifi_tethering</v-icon>
+                    <v-icon color="error" v-else>wifi_tethering</v-icon>
+                </v-flex>
+                <v-flex xs2 md2>
+                    <div class="caption grey--text">蓝牙检测</div>
+                    <v-icon color="success" v-if="dorm.bluetooth">bluetooth</v-icon>
+                    <v-icon color="error" v-else>bluetooth</v-icon>
+                </v-flex>
+                <v-flex xs2 md2>
+                    <div class="caption grey--text">是否有人</div>
+                    <v-icon color="success" v-if="dorm.has_student">person</v-icon>
+                    <v-icon color="error" v-else>person</v-icon>
                 </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">电流(A)</div>
                     <div>{{dorm.current}}</div>
                 </v-flex>
-                <v-flex xs2 md2>
+                <!-- <v-flex xs1 md1>
                     <div class="caption grey--text">功率(W)</div>
                     <div>{{dorm.power}}</div>
-                </v-flex>
+                </v-flex> -->
                 <v-flex xs2 md2>
                     <div class="caption grey--text">更新时间</div>
                     <div>{{dorm.update_time}}</div>
                 </v-flex>
-                <v-flex xs1 md1 align-self-center>
+                <v-flex xs2 md2 align-self-center>
                     <!-- <online-status-chip :tag='tag' :show_text="chip_show_text"></online-status-chip> -->
                     <v-chip small disabled :color="chipColor">
                         <span class="white--text">{{chipText}}</span>
                     </v-chip>
                 </v-flex>
-                <v-flex xs1 md1 align-self-center>
+                <!-- <v-flex xs1 md1 align-self-center>
                     <v-icon right>keyboard_arrow_right</v-icon>
-                </v-flex>
+                </v-flex> -->
             </v-layout>
         </v-card>
     </v-hover>

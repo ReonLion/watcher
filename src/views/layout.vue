@@ -42,8 +42,11 @@ export default {
         if(this.$store.state.userDetail.canControl){
           this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "view_list", text: "批\xa0量\xa0控\xa0制", route: "/BulkControl"})
         }
+        if(this.$store.state.userDetail.username.endsWith('admin')) {
+          this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "build", text: "用\xa0电\xa0设\xa0置", route: "/GlobalSettings"})
+        }
         if(this.$store.state.userDetail.canRegister) {
-          this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "link", text: "绑\xa0定\xa0设\xa0备", route: "/BindDevice"})
+          // this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "link", text: "绑\xa0定\xa0设\xa0备", route: "/BindDevice"})
         }
         this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"})
         // 身份权限分配完成

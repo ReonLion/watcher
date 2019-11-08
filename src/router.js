@@ -14,6 +14,7 @@ import DormProfile from '@/views/realtime_info/dorm/DormProfile'
 import DormDetail from '@/views/realtime_info/dorm/DormDetail'
 import HistoryLayout from '@/views/history/layout'
 import BulkControlLayout from '@/views/bulk_control/layout'
+import GlobalSettingsLayout from '@/views/global_settings/layout'
 import BindDeviceLayout from '@/views/bind_device/layout'
 import SettingsLayout from '@/views/settings/layout'
 
@@ -114,6 +115,11 @@ export default new Router({
           path: '/BulkControl',
           name: 'BulkControl',
           component: BulkControlLayout,
+        },
+        {
+          path: '/GlobalSettings',
+          name: 'GlobalSettings',
+          component: GlobalSettingsLayout,
         },
         {
           path: '/BindDevice',
