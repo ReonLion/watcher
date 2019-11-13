@@ -7,6 +7,9 @@
             <v-flex xs6 md6 pr-1 pb-1>
                 <safe-status-card v-if="getDetailFlag"  :is_warning="is_warning" :warning_msg="warning_msg"></safe-status-card>
             </v-flex>
+            <div v-for="(student, i) in students" :key="i">
+                <student-online-chip :name="student.name" :online="student.is_online"></student-online-chip>
+            </div>
             <!-- <v-divider style="border-width: 0.5px; border-color: #3F51B5;"></v-divider> -->
             <v-flex v-if="getHistoryFlag" xs12 md12>
                 <history-card :history="history"></history-card>
@@ -16,18 +19,20 @@
 </template>
 
 <script>
-import {getDorm24hHistory, getDormInfo} from '@/api/api'
+import {getDorm24hHistory, getDormInfo, getDormStudents} from '@/api/api'
 import HistoryCard from '@/components/cards/HistoryVerticalCard'
 import SafeStatusCard from '@/components/cards/SafeStatusCard'
 import DormControlCard from '@/components/cards/DormControlCard'
+import StudentOnlineChip from '@/components/chips/StudentOnlineChip'
 export default {
-    components: {HistoryCard, SafeStatusCard, DormControlCard},
+    components: {HistoryCard, SafeStatusCard, DormControlCard, StudentOnlineChip},
     data(){
         return{
             history: [],
             dorm: null,
             getHistoryFlag: false,
             getDetailFlag: false,
+            students: [],
         }
     },
     computed: {
@@ -61,6 +66,14 @@ export default {
                     this.dorm = response.data[0]
                 }
             )
+
+            getDormStudents(this.$route.query.dorm_id)
+            .then(
+                (response) => {
+                    this.students = response.data
+                }
+            )
+
             getDorm24hHistory(this.$route.query.dorm_id)
             .then(
                 (response) => {

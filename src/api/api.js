@@ -150,3 +150,9 @@ export const postGlobalSettings = (minCurrentOffline, minCurrentOnline) => { ret
     min_current_offline: minCurrentOffline,
     min_current_online:minCurrentOnline,
 }) }
+
+export const getDormStudents = (dorm_id) => { return axios.get(`${host}/DormStudents/`, {
+    params: {
+        dorm_id: dorm_id,
+    }
+}) }
