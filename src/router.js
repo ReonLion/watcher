@@ -17,6 +17,8 @@ import BulkControlLayout from '@/views/bulk_control/layout'
 import GlobalSettingsLayout from '@/views/global_settings/layout'
 import BindDeviceLayout from '@/views/bind_device/layout'
 import SettingsLayout from '@/views/settings/layout'
+import RepeatDisplayLayout from '@/views/repeat_display/layout'
+import TestLayout from '@/views/test/layout'
 
 Vue.use(Router)
 
@@ -122,6 +124,11 @@ export default new Router({
           component: GlobalSettingsLayout,
         },
         {
+          path: '/RepeatDisplay',
+          name: 'RepeatDisplay',
+          component: RepeatDisplayLayout,
+        },
+        {
           path: '/BindDevice',
           name: 'BindDevice',
           component: BindDeviceLayout,
@@ -130,6 +137,11 @@ export default new Router({
           path: '/Settings',
           name: 'Settings',
           component: SettingsLayout,
+        },
+        {
+          path: '/Test',
+          name: 'Test',
+          component: TestLayout,
         }
       ]
     },

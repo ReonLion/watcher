@@ -31,7 +31,7 @@ export default {
             loading: false,
             errorMsg: null,
             text: '获取验证码',
-            interval: 5,
+            interval: 60,
             click: 0,
             now: 0,
         }
