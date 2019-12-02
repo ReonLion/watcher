@@ -73,7 +73,7 @@ export default {
     computed: {
       // username=学校编号+职工号
       username: function(){
-        if(this.employeeNo.endsWith('admin') || this.employeeNo.endsWith('register'))
+        if(this.employeeNo.endsWith('admin') || this.employeeNo.endsWith('app'))
           return this.employeeNo
         else
           return this.selectSchool + this.employeeNo
