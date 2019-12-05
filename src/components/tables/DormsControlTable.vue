@@ -77,8 +77,8 @@ import {getDormsList, LockDorms, unlockDorms, openDorms, closeDorms} from '@/api
         actions: [
           { text: '锁定远程设备', callback: () => this.lockSelected() },
           { text: '解锁远程设备', callback: () => this.unlockSelected() },
-          { text: '打开设备电源', callback: () => this.openSelected() },
-          { text: '关闭设备电源', callback: () => this.closeSelected() }
+          { text: '打开宿舍电源', callback: () => this.openSelected() },
+          { text: '关闭宿舍电源', callback: () => this.closeSelected() }
       ],
       }
     },

@@ -11,12 +11,12 @@
                     <div>{{building.online_dorms_num}}/{{building.total_dorms_num}}</div>
                 </v-flex>
                 <v-flex xs2 md2>
-                    <div class="caption grey--text">平均电流(A)</div>
-                    <div>{{building.current}}</div>
+                    <div class="caption grey--text">总电流(A)</div>
+                    <div>{{building.sum_current}}</div>
                 </v-flex>
                 <v-flex xs2 md2>
-                    <div class="caption grey--text">平均功率(W)</div>
-                    <div>{{building.power}}</div>
+                    <div class="caption grey--text">总功率(W)</div>
+                    <div>{{building.sum_power}}</div>
                 </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">更新时间</div>

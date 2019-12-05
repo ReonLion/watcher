@@ -118,10 +118,10 @@ export default {
   },
   created: function() {
     // 跳转路由
-    // if(this.$store.state.userDetail.canRegister && !this.$store.state.userDetail.canWatch) {
-    //   this.$router.replace({name: 'BindDevice'})
-    //   return
-    // }
+    if(this.$store.state.userDetail.canRegister && !this.$store.state.userDetail.canWatch) {
+      this.$router.replace({name: 'Settings'})
+      return
+    }
     // 同步清除vuex中dormsInfo数据
     this.$store.commit('CLEAR_BUILDINGS_INFO')
     // 异步更新vuex中buildingsInfo数据
