@@ -12,6 +12,7 @@
         <!-- <td>{{ props.item.device_no }}</td> -->
         <td>{{ props.item.dorm_name }}</td>
         <td>{{ props.item.current }}</td>
+        <td>{{ props.item.electricty }}</td>
         <!-- <td>{{ props.item.power }}</td> -->
         <td>
            <v-icon color="success" v-if="props.item.switch_status">toggle_on</v-icon>
@@ -82,6 +83,7 @@
           // { text: '设备编号',align: 'left', sortable: false, value: 'device_no'},
           { text: '宿舍名称', sortable: false, value: 'dorm_name' },
           { text: '电流 (A)', sortable: false, value: 'current' },
+          { text: '用电量 (度)', sortable: false, value: 'electricty' },
           // { text: '功率 (W)', sortable: false, value: 'power' },
           { text: '电源状态', sortable: false, value: 'switch_status' },
           { text: '是否有人', sortable: false, value: 'has_student' },
