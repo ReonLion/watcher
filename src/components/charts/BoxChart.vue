@@ -101,6 +101,8 @@ export default {
         case "bar":
           this.defaultOption.push(["series[0].type", "bar"])
           this.defaultOption.push(["series[0].barWidth", "50%"])
+          // tooltip
+          this.defaultOption.push(["tooltip.formatter", this.tooltipFormat])
           // add shadow series
           // this.defaultOption.push(['series[1].type', 'bar']);
           break
@@ -113,6 +115,8 @@ export default {
           // set main series
           // this.defaultOption.push(['series[1].data', StackData]);
           this.defaultOption.push(["series[1].type", "bar"])
+          // tooltip
+          this.defaultOption.push(["tooltip.formatter", this.tooltipFormat])
           break
         case "area":
           this.defaultOption.push(["series[0].type", "line"])

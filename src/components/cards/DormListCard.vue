@@ -7,29 +7,29 @@
                     <div class="caption grey--text">宿舍</div>
                     <div>{{dorm.name}}</div>
                 </v-flex>
-                <v-flex xs2 md2>
-                    <div class="caption grey--text">红外检测</div>
+                <v-flex xs1 md1>
+                    <div class="caption grey--text">红外</div>
                     <v-icon color="success" v-if="dorm.infrared">wifi_tethering</v-icon>
                     <v-icon color="error" v-else>wifi_tethering</v-icon>
                 </v-flex>
-                <v-flex xs2 md2>
-                    <div class="caption grey--text">蓝牙检测</div>
+                <v-flex xs1 md1>
+                    <div class="caption grey--text">蓝牙</div>
                     <v-icon color="success" v-if="dorm.bluetooth">bluetooth</v-icon>
                     <v-icon color="error" v-else>bluetooth</v-icon>
                 </v-flex>
-                <v-flex xs2 md2>
-                    <div class="caption grey--text">是否有人</div>
+                <v-flex xs1 md1>
+                    <div class="caption grey--text">在线</div>
                     <v-icon color="success" v-if="dorm.has_student">person</v-icon>
                     <v-icon color="error" v-else>person</v-icon>
                 </v-flex>
-                <v-flex xs2 md2>
+                <v-flex xs1 md1>
                     <div class="caption grey--text">电流(A)</div>
                     <div>{{dorm.current}}</div>
                 </v-flex>
-                <!-- <v-flex xs1 md1>
-                    <div class="caption grey--text">功率(W)</div>
-                    <div>{{dorm.power}}</div>
-                </v-flex> -->
+                <v-flex xs2 md2>
+                    <div class="caption grey--text">用电量(度)</div>
+                    <div>{{dorm.electricty}}</div>
+                </v-flex>
                 <v-flex xs2 md2>
                     <div class="caption grey--text">更新时间</div>
                     <div>{{dorm.update_time}}</div>

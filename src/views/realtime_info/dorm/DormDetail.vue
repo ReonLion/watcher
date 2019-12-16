@@ -20,7 +20,7 @@
 
 <script>
 import {getDorm24hHistory, getDormInfo, getDormStudents} from '@/api/api'
-import HistoryCard from '@/components/cards/HistoryVerticalCard'
+import HistoryCard from '@/components/cards/HistoryVerticalCardWithElectricty'
 import SafeStatusCard from '@/components/cards/SafeStatusCard'
 import DormControlCard from '@/components/cards/DormControlCard'
 import StudentOnlineChip from '@/components/chips/StudentOnlineChip'
