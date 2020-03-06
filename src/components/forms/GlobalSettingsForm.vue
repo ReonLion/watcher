@@ -2,11 +2,15 @@
     <v-form ref="form">
         <v-layout row wrap class="my-0 pa-0" justify-center>
             <v-flex xs12 md12>
-                <v-text-field v-model="minCurrentOffline" label="无人时警报电流（A）" 
+                <v-text-field v-model="minCurrentOffline" label="无人时警告电流（A）" 
                 :rules="emptyRules" outline flat></v-text-field>
             </v-flex>
             <v-flex xs12 md12>
-                <v-text-field v-model="minCurrentOnline" label="有人时警报电流（A）" 
+                <v-text-field v-model="minCurrentOnline" label="有人时警告电流（A）" 
+                :rules="emptyRules" outline flat></v-text-field>
+            </v-flex>
+            <v-flex xs12 md12>
+                <v-text-field v-model="intervalNobody" label="宿舍连续多长时间无人警告（小时）" 
                 :rules="emptyRules" outline flat></v-text-field>
             </v-flex>
             <v-flex xs8 md8>
@@ -25,6 +29,7 @@ export default {
         loading: false,
         minCurrentOffline: null,
         minCurrentOnline: null,
+        intervalNobody: null,
         emptyRules: [
             v => !!v || '不能为空',
         ],
@@ -35,7 +40,7 @@ export default {
             // 如果表单验证通过
             if(this.$refs.form.validate()) {
                 this.loading = true
-                postGlobalSettings(this.minCurrentOffline, this.minCurrentOnline)
+                postGlobalSettings(this.minCurrentOffline, this.minCurrentOnline, this.intervalNobody)
                 .then(
                     (response) => {
                         if(response.status == 201) {
@@ -59,6 +64,7 @@ export default {
                     if(response.data.length >= 1) {
                         this.minCurrentOffline = response.data[0].min_current_offline
                         this.minCurrentOnline = response.data[0].min_current_online
+                        this.intervalNobody = response.data[0].interval_of_no_body_alert
                     }
                 }
             )

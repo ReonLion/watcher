@@ -44,11 +44,13 @@ export default {
         }
         if(this.$store.state.userDetail.username.endsWith('admin')) {
           this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "build", text: "用\xa0电\xa0设\xa0置", route: "/GlobalSettings"})
+          this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "warning", text: "故\xa0障\xa0设\xa0备", route: "/FailedDevices"})
         }
         if(this.$store.state.userDetail.canRegister) {
           // this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "link", text: "绑\xa0定\xa0设\xa0备", route: "/BindDevice"})
         }
         if(this.$store.state.userDetail.canWatch) {
+          this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "person_pin", text: "长期无人宿舍", route: "/EmptyDorms"})
           this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "fullscreen", text: "大\xa0屏\xa0轮\xa0播", route: "/RepeatDisplay"})
         }
         this.$store.commit('PUSH_HOMEPAGE_LINK', {icon: "settings", text: "设\xa0\xa0\xa0\xa0置", route: "/Settings"})

@@ -14,6 +14,8 @@ import DormProfile from '@/views/realtime_info/dorm/DormProfile'
 import DormDetail from '@/views/realtime_info/dorm/DormDetail'
 import HistoryLayout from '@/views/history/layout'
 import BulkControlLayout from '@/views/bulk_control/layout'
+import FailedDevicesLayout from '@/views/failed_devices/layout'
+import EmptyDormsLayout from '@/views/empty_dorms/layout'
 import GlobalSettingsLayout from '@/views/global_settings/layout'
 import BindDeviceLayout from '@/views/bind_device/layout'
 import SettingsLayout from '@/views/settings/layout'
@@ -127,6 +129,16 @@ export default new Router({
           path: '/RepeatDisplay',
           name: 'RepeatDisplay',
           component: RepeatDisplayLayout,
+        },
+        {
+          path: '/FailedDevices',
+          name: 'FailedDevices',
+          component: FailedDevicesLayout,
+        },
+        {
+          path: '/EmptyDorms',
+          name: 'EmptyDorms',
+          component: EmptyDormsLayout,
         },
         {
           path: '/BindDevice',

@@ -146,9 +146,10 @@ export const closeDorms = (dormsId) => { return axios.post(`${host}/CloseDormsSw
 
 export const getGlobalSettings = () => { return axios.get(`${host}/GlobalSettings/`) }
 
-export const postGlobalSettings = (minCurrentOffline, minCurrentOnline) => { return axios.post(`${host}/GlobalSettings/`, {
+export const postGlobalSettings = (minCurrentOffline, minCurrentOnline, intervalNobody) => { return axios.post(`${host}/GlobalSettings/`, {
     min_current_offline: minCurrentOffline,
     min_current_online:minCurrentOnline,
+    interval_of_no_body_alert: intervalNobody,
 }) }
 
 export const getDormStudents = (dorm_id) => { return axios.get(`${host}/DormStudents/`, {
@@ -156,3 +157,7 @@ export const getDormStudents = (dorm_id) => { return axios.get(`${host}/DormStud
         dorm_id: dorm_id,
     }
 }) }
+
+export const getLongtimeNotUpdateDevices = () => { return axios.get(`${host}/LongtimeNotUpdateDevices/`) }
+
+export const getLongtimeNoStudentDorms = () => { return axios.get(`${host}/LongtimeNoStudentDorms/`) }
